@@ -11,10 +11,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Configuration
 @Slf4j
@@ -22,9 +25,23 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+       /* return http
                 .formLogin(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().authenticated())
+                .build();*/
+        Set<String> googleScopes = new HashSet<>();
+        googleScopes.add("https://www.googleapis.com/auth/userinfo.email");
+        googleScopes.add("https://www.googleapis.com/auth/userinfo.profile");
+        OidcUserService googleService = new OidcUserService();
+        googleService.setAccessibleScopes(googleScopes);
+        return http
+                .formLogin(Customizer.withDefaults())
+                .oauth2Login(oauth ->
+                        oauth
+                                .userInfoEndpoint(info -> info
+                                        .oidcUserService(googleService)))
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
                 .build();

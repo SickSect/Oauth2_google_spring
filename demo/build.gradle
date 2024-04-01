@@ -25,6 +25,9 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client
 	implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '6.2.2'
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-jose
+	implementation group: 'org.springframework.security', name: 'spring-security-oauth2-jose', version: '6.2.2'
+
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
