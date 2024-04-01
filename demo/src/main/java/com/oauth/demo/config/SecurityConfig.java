@@ -25,13 +25,13 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-       /* return http
+        return http
                 .formLogin(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
-                .build();*/
-        Set<String> googleScopes = new HashSet<>();
+                .build();
+        /*Set<String> googleScopes = new HashSet<>();
         googleScopes.add("https://www.googleapis.com/auth/userinfo.email");
         googleScopes.add("https://www.googleapis.com/auth/userinfo.profile");
         OidcUserService googleService = new OidcUserService();
@@ -44,7 +44,7 @@ public class SecurityConfig {
                                         .oidcUserService(googleService)))
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated())
-                .build();
+                .build();*/
     }
 
     @Bean
