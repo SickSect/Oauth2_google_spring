@@ -1,16 +1,18 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   security:
     oauth2:
       client:
         registration:
           google:
-            client-id:
-            client-secret:
+            client-id: ${GOOGLE_LOCAL_CLIENT_ID}
+            client-secret: ${GOOGLE_LOCAL_SECRET}
             #client-authentication-method:
             #authorization-grant-type:
-          github:
-            client-id:
-            client-secret:
+          #github:
+            #client-id: ${GIT_LOCAL_CLIENT_ID}
+            #client-secret: ${GIT_LOCAL_SECRET}
             #client-authentication-method:
             #authorization-grant-type:
   application:
